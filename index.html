@@ -44,6 +44,34 @@
         </script>
       </section>
       <section>
+        <h2>cactus</h2>
+        <ul>
+	        <li></li>
+          <li><p style="margin-top: -15px;margin-bottom: -10px">di sini kita akan sedikit mengulas cara kami membuat object cactus secara coding</p></li>
+          <li><p>cactus yang di hasilkan berupa pixel-pixel yang digabung</p></li>
+	        <li>	<div class="code" style="font-size:10px;text-align:left">var x = this.x - offset,</div>
+		            <div class="code" style="font-size:10px;text-align:left">y = this.y,</div>
+		            <div class="code" style="font-size:10px;text-align:left">scale = this.scale;</div>
+            		<div class="code" style="font-size:10px;text-align:left">context.fillStyle = this.colour;</div>
+            		<div class="code" style="font-size:10px;text-align:left">// center</div>
+            		<div class="code" style="font-size:10px;text-align:left">var height = 15 * this.centerSize;</div>
+            		<div class="code" style="font-size:10px;text-align:left">context.fillRect(x + 6 * scale, y - (20 + height) * scale, 6 * scale, height * scale);</div>
+            		<div class="code" style="font-size:10px;text-align:left">context.fillRect(x + 7 * scale, y - (20 + height + 1) * scale, 4 * scale, 1 * scale);</div>
+            		<div class="code" style="font-size:10px;text-align:left">context.fillRect(x + 6 * scale, y - 20 * scale, 6 * scale, 20 * scale);</div>
+            		<div class="code" style="font-size:10px;text-align:left">// left</div>
+            		<div class="code" style="font-size:10px;text-align:left">height = 15 * this.leftSize;</div>
+            		<div class="code" style="font-size:10px;text-align:left">context.fillRect(x, y - (15 + height) * scale, 4 * scale, height * scale);</div>
+            		<div class="code" style="font-size:10px;text-align:left">context.fillRect(x + 1 * scale, y - (15 + height + 1) * scale, 2 * scale, 1 * scale);</div>
+            		<div class="code" style="font-size:10px;text-align:left">context.fillRect(x + 4 * scale, y - 19 * scale, 4 * scale, 4 * scale);</div>
+            		<div class="code" style="font-size:10px;text-align:left">// right</div>
+            		<div class="code" style="font-size:10px;text-align:left">height = 15 * this.rightSize;</div>
+            		<div class="code" style="font-size:10px;text-align:left">context.fillRect(x + 14 * scale, y - (15 + height) * scale, 4 * scale, height * scale);</div>
+            		<div class="code" style="font-size:10px;text-align:left">context.fillRect(x + 15 * scale, y - (15 + height + 1) * scale, 2 * scale, 1 * scale);</div>
+            		<div class="code" style="font-size:10px;text-align:left">context.fillRect(x + 12 * scale, y - 19 * scale, 4 * scale, 4 * scale);</div>
+         </li>
+       </ul>
+      </section>
+      <section>
         <h2>Named Route  </h2>
         <p>Look up! This route has been named with a <em>'data-bespoke-hash'</em> attribute.</p>
       </section>
