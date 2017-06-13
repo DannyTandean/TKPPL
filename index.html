@@ -3,45 +3,20 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Tugas</title>
+    <title>Project Dino</title>
     <link rel="stylesheet" type="text/css" href="build/build.css">
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <article>
-      <section>
+    <article style="width:100%;margin:0;padding:0;">
+      <section data-bespoke-backdrop="emphatic" class="emphatic-text">
         <h2>Team Member</h2>
         <ul>
-          <li>Danny Tandean</li>
-          <li>Exel Staderlin</li>
-          <li>Munarso</li>
-          <li>Hendry        </li>
+          <li>Danny Tandean (15.111.0776)</li>
+          <li>Exel Staderlin (15.111.)</li>
+          <li>Munarso (15.111.)</li>
+          <li>Hendry (15.111.)</li>
         </ul>
-      </section>
-      <section>
-        <h1>Dinosaur Game!</h1>
-        <canvas id="game"></canvas>		
-        <p class="controls">press space bar to start</p>        
-        <script src="js/helpers.js"></script>        
-        <script src="js/objects/game-object.js"></script>        
-        <script src="js/objects/cactus.js"></script>        
-        <script src="js/objects/dinosaur.js"></script>        
-        <script src="js/objects/background.js"></script>        
-        <script src="js/objects/score.js"></script>        
-        <script src="js/game.js"></script>        
-        <script>
-          new Game({
-          el: document.getElementById("game")
-          });
-        </script>        
-        <div class="center">
-          <button onclick="myFunction()">Replay </button>
-        </div>
-        <script>
-          function myFunction() {
-              location.reload();
-          }
-        </script>
       </section>
       <section data-bespoke-backdrop="emphatic" class="emphatic-text">
         <h2>cactus</h2>
@@ -81,19 +56,19 @@
         <h2 class="bullet">Dinosaurus</h2>
         <ul>
             <li>Di buat dengan menggunakan gabungan pixel</li>
-            <li><p>(function(namespace) { <br>
-                    var STEP_SPEED = 0.02; <br>
-                    var JUMP_DISTANCE = 250;<br>
-                    var JUMP_HEIGHT = 100;<br>
+            <li><pre>function(namespace) { 
+    var STEP_SPEED = 0.02; 
+    var JUMP_DISTANCE = 250;
+    var JUMP_HEIGHT = 100;<br>
 
-                    function Dinosaur(options) {<br>
-                        this.scale = options.scale;<br>
-                        this.x = options.left;<br>
-                        this.y = options.bottom;<br>
-                        this.colour = options.colour;<br>
-                        this.jumpStart = null;
-                    }
-                </p>
+    function Dinosaur(options) {
+        this.scale = options.scale;
+        this.x = options.left;
+        this.y = options.bottom;
+        this.colour = options.colour;
+        this.jumpStart = null;
+    }
+                </pre>
             </li>
         </ul>
         
@@ -127,38 +102,39 @@
           <h2 class="bullet">Score!</h2>
            <ul>
                <li>Proses berjalannya Score ini adalah dengan seberapa banyak <br> jarak yang anda bisa capai dan akan berhenti jika terjadi collision (tabrakan)</li>
-               <li><p>(function(namespace) { <br>
-                            var SCORE_FACTOR = 0.1; <br>
+               <li><pre>(function(namespace) { 
+var SCORE_FACTOR = 0.1; 
 
-                            function formatOffset(offset) { <br>
-                                // TODO pad with zeroes <br>
-                                return Math.floor(offset * SCORE_FACTOR); <br>
-                            }
+function formatOffset(offset) { 
+    // TODO pad with zeroes 
+    return Math.floor(offset * SCORE_FACTOR); 
+}
 
-                            function ScoreBoard(options) { <br>
-                                this.scale = options.scale; <br>
-                                this.x = options.left; <br>
-                                this.y = options.bottom; <br>
-                                this.colour = options.colour; <br>
-                            }
-              </p></li>
+function ScoreBoard(options) { 
+    this.scale = options.scale; 
+    this.x = options.left; 
+    this.y = options.bottom;
+    this.colour = options.colour; 
+}
+              </pre></li>
            </ul>
       </section>
       <section data-bespoke-backdrop="emphatic" class="emphatic-text">
          <h2 class="bullet">Score</h2>
           <ul>
-              <li>ScoreBoard.prototype = Object.create(GameObject.prototype); <br>
-                    ScoreBoard.prototype.constructor = ScoreBoard;<br><br>
+              <li><pre>ScoreBoard.prototype = Object.create(GameObject.prototype);
+ScoreBoard.prototype.constructor = ScoreBoard;
 
-                    ScoreBoard.prototype.draw = function(context, offset) {<br>
-                        context.fillStyle = this.colour;<br>
-                        context.font = "16px Courier";<br>
-                        context.textAlign = "right"; <br>
-                        context.fillText(formatOffset(offset), this.x, this.y);<br>
-                    };<br><br>
+ScoreBoard.prototype.draw = function(context, offset) {
+    context.fillStyle = this.colour;
+    context.font = "16px Courier";
+    context.textAlign = "right"; 
+    context.fillText(formatOffset(offset), this.x, this.y);
+};
 
-                    namespace.ScoreBoard = ScoreBoard;<br>
-                })(window);<br>
+namespace.ScoreBoard = ScoreBoard;<br>
+})(window);<br>
+                </pre>
              </li>
           </ul>
       </section>
@@ -168,23 +144,22 @@
               <li>Pada Background ini kita akan membuat sebuah latar yang di gunakan <br>
                   untuk menampilkan object-object yang telah kita buat
               </li>
-              <li><p>
-                  (function(namespace) { <br>
-                        function generateBits(width, height) {<br>
-                            var bits = [], x, y;<br>
-                            for (y = height - 10; y <= height; y += 8) {<br>
-                                for (x = 0 + rand(0, 100); x <= width; x += rand(100, 200)) {<br>
-                                    bits.push({<br>
-                                        x: x, <br>
-                                        y: y, <br>
-                                        width: rand(2, 4)<br>
-                                    });<br>
-                                }
-                            }
-                            return bits;
-                        }
+              <li><pre>
+  (function(namespace) { 
+function generateBits(width, height) {
+    var bits = [], x, y;
+    for (y = height - 10; y <= height; y += 8) {
+        for (x = 0 + rand(0, 100); x <= width; x += rand(100, 200)) {
+    bits.push({
+        x: x, 
+        y: y, 
+        width: rand(2, 4)
+    });
+}
+    return bits;
+}
 
-              </p></li>
+              </pre></li>
           </ul>
       </section>
       <section data-bespoke-backdrop="emphatic" class="emphatic-text">
@@ -220,25 +195,31 @@
                 })(window);
               </p></li>
           </ul>
-      </section> 
-      <section>
-        <h2>Named Route  </h2>
-        <p>Look up! This route has been named with a <em>'data-bespoke-hash'</em> attribute.</p>
       </section>
       <section data-bespoke-backdrop="emphatic" class="emphatic-text">
-        <h2>Emphatic Slide!</h2>
-        <h3>Powered by <a href="https://github.com/markdalgleish/bespoke-backdrop">bespoke-backdrop</a></h3>
-      </section>
-      <section>
-        <h2 class="bullet">Just the beginning...</h2><br>
-        <ul>
-          <li>Edit <a href="http://jade-lang.com/">Jade</a> markup in <em>'src/index.jade'</em></li>
-          <li>Edit <a href="http://learnboost.github.io/stylus/">Stylus</a> styles in <em>'src/styles/main.styl'</em></li>
-          <li>Edit JavaScript in <em>'src/scripts/main.js'</em></li>
-        </ul><br>
-        <ul>
-          <li><strong>Enjoy! :)</strong><a href="http://twitter.com/markdalgleish"> -@markdalgleish</a></li>
-        </ul>
+        <h1>Dinosaur!</h1>
+        <canvas id="game"></canvas>		
+        <p class="controls">press space bar to start</p>        
+        <script src="js/helpers.js"></script>        
+        <script src="js/objects/game-object.js"></script>        
+        <script src="js/objects/cactus.js"></script>        
+        <script src="js/objects/dinosaur.js"></script>        
+        <script src="js/objects/background.js"></script>        
+        <script src="js/objects/score.js"></script>        
+        <script src="js/game.js"></script>        
+        <script>
+          new Game({
+          el: document.getElementById("game")
+          });
+        </script>        
+        <div class="center">
+          <button onclick="myFunction()">Replay </button>
+        </div>
+        <script>
+          function myFunction() {
+              location.reload();
+          }
+        </script>
       </section>
     </article>
     <script src="build/build.js"></script>
