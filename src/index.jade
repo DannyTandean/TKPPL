@@ -1,0 +1,299 @@
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    |     
+    meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1")
+    |     
+    title Project Dino
+    |     
+    link(rel="stylesheet", type="text/css", href="build/build.css")
+    |     
+    link(rel="stylesheet", href="style.css")
+  |   
+  body
+    article(style="width:100%;margin:0;padding:0;")
+      section.emphatic-text(data-bespoke-backdrop="emphatic")
+        h2 Team Member
+        |         
+        ul
+          li Danny Tandean (15.111.0776)
+          |           
+          li Exel Staderlin (15.111.1178)
+          |           
+          li Munarso (15.111.3187)
+          |           
+          li Hendry (15.111.3748)
+      |       
+      section.emphatic-text(data-bespoke-backdrop="emphatic")
+        h2 cactus
+        |         
+        ul
+          li
+          |             
+          li
+            p(style="margin-top: -15px;margin-bottom: -10px") di sini kita akan sedikit mengulas cara kami membuat object cactus secara coding
+          |             
+          li
+            p cactus yang di hasilkan berupa pixel-pixel yang digabung
+      |       
+      section.emphatic-text(data-bespoke-backdrop="emphatic")
+        ul
+          li
+            .code(style="font-size:10px;text-align:left") var x = this.x - offset,
+            |                 
+            .code(style="font-size:10px;text-align:left") y = this.y,
+            |                 
+            .code(style="font-size:10px;text-align:left") scale = this.scale;
+            |                 
+            .code(style="font-size:10px;text-align:left") context.fillStyle = this.colour;
+            |                 
+            .code(style="font-size:10px;text-align:left") // center
+            |                 
+            .code(style="font-size:10px;text-align:left") var height = 15 * this.centerSize;
+          li
+            .code(style="font-size:10px;text-align:left")
+              | context.fillRect(x + 6 * scale, y - (20      + height) * scale, 6 * scale, height * scale);
+            |                 
+            .code(style="font-size:10px;text-align:left")
+              | context.fillRect(x + 7 * scale, y - (20 + height + 1) * scale, 4 * scale, 1 * scale);
+            |                 
+            .code(style="font-size:10px;text-align:left") context.fillRect(x + 6 * scale, y - 20 * scale, 6 * scale, 20 * scale);
+            |                 
+            .code(style="font-size:10px;text-align:left") // left
+            |                 
+            .code(style="font-size:10px;text-align:left") height = 15 * this.leftSize;
+            |                 
+            .code(style="font-size:10px;text-align:left") context.fillRect(x, y - (15 + height) * scale, 4 * scale, height * scale);
+            |                 
+            .code(style="font-size:10px;text-align:left")
+              | context.fillRect(x + 1 * scale, y - (15 + height + 1) * scale, 2 * scale, 1 * scale);
+          |           
+          li
+            .code(style="font-size:10px;text-align:left") context.fillRect(x + 4 * scale, y - 19 * scale, 4 * scale, 4 * scale);
+            |                 
+            .code(style="font-size:10px;text-align:left") // right
+            |                 
+            .code(style="font-size:10px;text-align:left") height = 15 * this.rightSize;
+            |                 
+            .code(style="font-size:10px;text-align:left")
+              | context.fillRect(x + 14 * scale, y - (15 + height) * scale, 4 * scale, height * scale);
+            |                 
+            .code(style="font-size:10px;text-align:left")
+              | context.fillRect(x + 15 * scale, y - (15 + height + 1) * scale, 2 * scale, 1 * scale);
+            |                 
+            .code(style="font-size:10px;text-align:left") context.fillRect(x + 12 * scale, y - 19 * scale, 4 * scale, 4 * scale);
+      |       
+      section.emphatic-text(data-bespoke-backdrop="emphatic")
+        h2.bullet Dinosaurus
+        |         
+        ul
+          li Di buat dengan menggunakan gabungan pixel
+          |             
+          li
+            pre.
+              \nfunction(namespace) { 
+                  var STEP_SPEED = 0.02; 
+                  var JUMP_DISTANCE = 250;
+                  var JUMP_HEIGHT = 100;              
+              
+                  function Dinosaur(options) {
+                      this.scale = options.scale;
+                      this.x = options.left;
+                      this.y = options.bottom;
+                      this.colour = options.colour;
+                      this.jumpStart = null;
+                  }
+                                            
+      |       
+      section.emphatic-text(data-bespoke-backdrop="emphatic")
+        h2.bullet Jump Height
+        |         
+        ul
+          li
+            | Dinosaur.prototype.jumpHeight = function (offset) { 
+            br
+            |                     var distanceRemaining = this.jumpDistanceRemaining(offset);
+            br
+            |                     if (distanceRemaining > 0) {
+            br
+            |                         var maxPoint = JUMP_DISTANCE / 2;
+            br
+            br
+            |                         if (distanceRemaining >= maxPoint) {
+            br
+            |                             distanceRemaining -= JUMP_DISTANCE
+            br
+            br
+            |                         }
+            |                         // get a number between 0 and 1 (-x^2)
+            br
+            |                         // var arcPos = Math.abs(Math.pow(distanceRemaining / maxPoint, 2) * -1);
+            br
+            br
+            |                         // linear
+            br
+            |                         var arcPos = Math.abs(distanceRemaining / maxPoint);
+            br
+            br
+            |                         return JUMP_HEIGHT * arcPos;
+            br
+            |                     }
+            |                     return 0;
+            br
+            |                 };
+      |       
+      section.emphatic-text(data-bespoke-backdrop="emphatic")
+        h2.bullet Score!
+        |            
+        ul
+          li
+            | Proses berjalannya Score ini adalah dengan seberapa banyak 
+            br
+            |  jarak yang anda bisa capai dan akan berhenti jika terjadi collision (tabrakan)
+          |                
+          li
+            pre.
+              \n(function(namespace) { 
+              var SCORE_FACTOR = 0.1; 
+              
+              function formatOffset(offset) { 
+                  // TODO pad with zeroes 
+                  return Math.floor(offset * SCORE_FACTOR); 
+              }
+              
+              function ScoreBoard(options) { 
+                  this.scale = options.scale; 
+                  this.x = options.left; 
+                  this.y = options.bottom;
+                  this.colour = options.colour; 
+              }
+                                          
+      |       
+      section.emphatic-text(data-bespoke-backdrop="emphatic")
+        h2.bullet Score
+        |           
+        ul
+          li
+            pre.
+              \nScoreBoard.prototype = Object.create(GameObject.prototype);
+              ScoreBoard.prototype.constructor = ScoreBoard;
+              
+              ScoreBoard.prototype.draw = function(context, offset) {
+                  context.fillStyle = this.colour;
+                  context.font = "16px Courier";
+                  context.textAlign = "right"; 
+                  context.fillText(formatOffset(offset), this.x, this.y);
+              };
+              
+              namespace.ScoreBoard = ScoreBoard;              
+              })(window);              
+                                            
+      |       
+      section.emphatic-text(data-bespoke-backdrop="emphatic")
+        h2.bullet Background!
+        |           
+        ul
+          li
+            | Pada Background ini kita akan membuat sebuah latar yang di gunakan 
+            br
+            |                   untuk menampilkan object-object yang telah kita buat
+          |               
+          li
+            pre.
+              \n  (function(namespace) { 
+              function generateBits(width, height) {
+                  var bits = [], x, y;
+                  for (y = height - 10; y               
+      |       
+      section.emphatic-text(data-bespoke-backdrop="emphatic")
+        h3.bullet Background
+        |           
+        ul
+          li
+            p
+              | function Background(options) { 
+              br
+              |                         this.width = options.width;
+              br
+              |                         this.height = options.height;
+              br
+              |                         this.colour = options.colour;
+              br
+              |                         this.bits = generateBits(this.width, this.height);
+              br
+              |                     }
+              br
+              |                     Background.prototype = Object.create(GameObject.prototype);
+              br
+              |                     Background.prototype.constructor = Background;
+      |       
+      section.emphatic-text(data-bespoke-backdrop="emphatic")
+        h3.bullet Background
+        |           
+        ul
+          li
+            p
+              | Background.prototype.draw = function(context, offset) {
+              br
+              |                         context.fillStyle = this.colour;
+              br
+              |                         context.fillRect(0, this.height - 20, this.width, 1);
+              br
+              |                         for (var i = this.bits.length - 1; i >= 0; i--) {
+              br
+              |                             context.fillRect(this.width - ((this.bits[i].x + offset) % this.width),
+              br
+              |  this.bits[i].y, this.bits[i].width, 1);
+              br
+              |                         }
+              |                     };
+              |                     namespace.Background = Background;
+              br
+              |                 })(window);
+      |       
+      section.emphatic-text(data-bespoke-backdrop="emphatic")
+        h1 Dinosaur!
+        |         
+        canvas#game
+        | 		
+        |         
+        p.controls press space bar to start
+        |         
+        |         
+        script(src="js/helpers.js")
+        |         
+        |         
+        script(src="js/objects/game-object.js")
+        |         
+        |         
+        script(src="js/objects/cactus.js")
+        |         
+        |         
+        script(src="js/objects/dinosaur.js")
+        |         
+        |         
+        script(src="js/objects/background.js")
+        |         
+        |         
+        script(src="js/objects/score.js")
+        |         
+        |         
+        script(src="js/game.js")
+        |         
+        |         
+        script.
+          new Game({
+          el: document.getElementById("game")
+          });
+        |         
+        |         
+        .center
+          button(onclick="myFunction()") Replay 
+        |         
+        script.
+          function myFunction() {
+          location.reload();
+          }
+    |     
+    script(src="build/build.js")
