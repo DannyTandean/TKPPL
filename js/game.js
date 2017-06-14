@@ -66,7 +66,7 @@
 	Game.prototype.updateCacti = function() {
 		while (this.offset > this.nextCactus) {
 			var count = Math.floor(rand(1, 3.9)),
-				scale = rand(0.8, 1.5),
+				scale = rand(0.8, 1.3),
 				x = this.canvas.width + this.offset + SCREEN_BUFFER;
 
 			while (count--) {

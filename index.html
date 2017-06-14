@@ -12,10 +12,10 @@
       <section data-bespoke-backdrop="emphatic" class="emphatic-text">
         <h2>Team Member</h2>
         <ul>
-          <li>Danny Tandean</li>
-          <li>Exel Staderlin</li>
-          <li>Munarso</li>
-          <li>Hendry</li>
+          <li>Danny Tandean (15.111.0776)</li>
+          <li>Exel Staderlin (15.111.)</li>
+          <li>Munarso (15.111.)</li>
+          <li>Hendry (15.111.)</li>
         </ul>
       </section>
       <section data-bespoke-backdrop="emphatic" class="emphatic-text">
@@ -56,19 +56,19 @@
         <h2 class="bullet">Dinosaurus</h2>
         <ul>
             <li>Di buat dengan menggunakan gabungan pixel</li>
-            <li><p>(function(namespace) { <br>
-                    var STEP_SPEED = 0.02; <br>
-                    var JUMP_DISTANCE = 250;<br>
-                    var JUMP_HEIGHT = 100;<br>
+            <li><pre>function(namespace) { 
+    var STEP_SPEED = 0.02; 
+    var JUMP_DISTANCE = 250;
+    var JUMP_HEIGHT = 100;<br>
 
-                    function Dinosaur(options) {<br>
-                        this.scale = options.scale;<br>
-                        this.x = options.left;<br>
-                        this.y = options.bottom;<br>
-                        this.colour = options.colour;<br>
-                        this.jumpStart = null;
-                    }
-                </p>
+    function Dinosaur(options) {
+        this.scale = options.scale;
+        this.x = options.left;
+        this.y = options.bottom;
+        this.colour = options.colour;
+        this.jumpStart = null;
+    }
+                </pre>
             </li>
         </ul>
         
@@ -102,39 +102,98 @@
           <h2 class="bullet">Score!</h2>
            <ul>
                <li>Proses berjalannya Score ini adalah dengan seberapa banyak <br> jarak yang anda bisa capai dan akan berhenti jika terjadi collision (tabrakan)</li>
-               <li><p>(function(namespace) { <br>
-                            var SCORE_FACTOR = 0.1; <br>
+               <li><pre>(function(namespace) { 
+var SCORE_FACTOR = 0.1; 
 
-                            function formatOffset(offset) { <br>
-                                // TODO pad with zeroes <br>
-                                return Math.floor(offset * SCORE_FACTOR); <br>
-                            }
+function formatOffset(offset) { 
+    // TODO pad with zeroes 
+    return Math.floor(offset * SCORE_FACTOR); 
+}
 
-                            function ScoreBoard(options) { <br>
-                                this.scale = options.scale; <br>
-                                this.x = options.left; <br>
-                                this.y = options.bottom; <br>
-                                this.colour = options.colour; <br>
-                            }
-              </p></li>
+function ScoreBoard(options) { 
+    this.scale = options.scale; 
+    this.x = options.left; 
+    this.y = options.bottom;
+    this.colour = options.colour; 
+}
+              </pre></li>
            </ul>
       </section>
       <section data-bespoke-backdrop="emphatic" class="emphatic-text">
          <h2 class="bullet">Score</h2>
           <ul>
-              <li>ScoreBoard.prototype = Object.create(GameObject.prototype); <br>
-                    ScoreBoard.prototype.constructor = ScoreBoard;<br><br>
+              <li><pre>ScoreBoard.prototype = Object.create(GameObject.prototype);
+ScoreBoard.prototype.constructor = ScoreBoard;
 
-                    ScoreBoard.prototype.draw = function(context, offset) {<br>
-                        context.fillStyle = this.colour;<br>
-                        context.font = "16px Courier";<br>
-                        context.textAlign = "right"; <br>
-                        context.fillText(formatOffset(offset), this.x, this.y);<br>
-                    };<br><br>
+ScoreBoard.prototype.draw = function(context, offset) {
+    context.fillStyle = this.colour;
+    context.font = "16px Courier";
+    context.textAlign = "right"; 
+    context.fillText(formatOffset(offset), this.x, this.y);
+};
 
-                    namespace.ScoreBoard = ScoreBoard;<br>
-                })(window);<br>
+namespace.ScoreBoard = ScoreBoard;<br>
+})(window);<br>
+                </pre>
              </li>
+          </ul>
+      </section>
+      <section data-bespoke-backdrop="emphatic" class="emphatic-text">
+          <h2 class="bullet">Background!</h2>
+          <ul>
+              <li>Pada Background ini kita akan membuat sebuah latar yang di gunakan <br>
+                  untuk menampilkan object-object yang telah kita buat
+              </li>
+              <li><pre>
+  (function(namespace) { 
+function generateBits(width, height) {
+    var bits = [], x, y;
+    for (y = height - 10; y <= height; y += 8) {
+        for (x = 0 + rand(0, 100); x <= width; x += rand(100, 200)) {
+    bits.push({
+        x: x, 
+        y: y, 
+        width: rand(2, 4)
+    });
+}
+    return bits;
+}
+
+              </pre></li>
+          </ul>
+      </section>
+      <section data-bespoke-backdrop="emphatic" class="emphatic-text">
+          <h3 class="bullet">Background</h3>
+          <ul>
+              <li><p>
+                  function Background(options) { <br>
+                        this.width = options.width;<br>
+                        this.height = options.height;<br>
+                        this.colour = options.colour;<br>
+                        this.bits = generateBits(this.width, this.height);<br>
+                    }<br>
+
+                    Background.prototype = Object.create(GameObject.prototype);<br>
+                    Background.prototype.constructor = Background;
+              </p></li>
+          </ul>
+      </section>
+      <section data-bespoke-backdrop="emphatic" class="emphatic-text">
+          <h3 class="bullet">Background</h3>
+          <ul>
+              <li><p>
+                  Background.prototype.draw = function(context, offset) {<br>
+                        context.fillStyle = this.colour;<br>
+                        context.fillRect(0, this.height - 20, this.width, 1);<br>
+
+                        for (var i = this.bits.length - 1; i >= 0; i--) {<br>
+                            context.fillRect(this.width - ((this.bits[i].x + offset) % this.width),<br> this.bits[i].y, this.bits[i].width, 1);<br>
+                        }
+                    };
+
+                    namespace.Background = Background;<br>
+                })(window);
+              </p></li>
           </ul>
       </section>
       <section data-bespoke-backdrop="emphatic" class="emphatic-text">
