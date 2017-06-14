@@ -3,23 +3,142 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Tugas</title>
+    <title>Project Dino</title>
     <link rel="stylesheet" type="text/css" href="build/build.css">
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <article>
-      <section>
+    <article style="width:100%;margin:0;padding:0;">
+      <section data-bespoke-backdrop="emphatic" class="emphatic-text">
         <h2>Team Member</h2>
         <ul>
           <li>Danny Tandean</li>
           <li>Exel Staderlin</li>
           <li>Munarso</li>
-          <li>Hendry        </li>
+          <li>Hendry</li>
         </ul>
       </section>
-      <section>
-        <h1>Dinosaur Game!</h1>
+      <section data-bespoke-backdrop="emphatic" class="emphatic-text">
+        <h2>cactus</h2>
+        <ul>
+	        <li></li>
+            <li><p style="margin-top: -15px;margin-bottom: -10px">di sini kita akan sedikit mengulas cara kami membuat object cactus secara coding</p></li>
+            <li><p>cactus yang di hasilkan berupa pixel-pixel yang digabung</p></li>
+       </ul>
+      </section>
+      <section data-bespoke-backdrop="emphatic" class="emphatic-text">
+        <ul>
+            <li>	
+                <div class="code" style="font-size:10px;text-align:left">var x = this.x - offset,</div>
+                <div class="code" style="font-size:10px;text-align:left">y = this.y,</div>
+                <div class="code" style="font-size:10px;text-align:left">scale = this.scale;</div>
+                <div class="code" style="font-size:10px;text-align:left">context.fillStyle = this.colour;</div>
+                <div class="code" style="font-size:10px;text-align:left">// center</div>
+                <div class="code" style="font-size:10px;text-align:left">var height = 15 * this.centerSize;</div>
+           <li><div class="code" style="font-size:10px;text-align:left">context.fillRect(x + 6 * scale, y - (20      + height) * scale, 6 * scale, height * scale);</div>
+                <div class="code" style="font-size:10px;text-align:left">context.fillRect(x + 7 * scale, y - (20 + height + 1) * scale, 4 * scale, 1 * scale);</div>
+                <div class="code" style="font-size:10px;text-align:left">context.fillRect(x + 6 * scale, y - 20 * scale, 6 * scale, 20 * scale);</div>
+                <div class="code" style="font-size:10px;text-align:left">// left</div>
+                <div class="code" style="font-size:10px;text-align:left">height = 15 * this.leftSize;</div>
+                <div class="code" style="font-size:10px;text-align:left">context.fillRect(x, y - (15 + height) * scale, 4 * scale, height * scale);</div>
+                <div class="code" style="font-size:10px;text-align:left">context.fillRect(x + 1 * scale, y - (15 + height + 1) * scale, 2 * scale, 1 * scale);</div></li>
+          <li>
+                <div class="code" style="font-size:10px;text-align:left">context.fillRect(x + 4 * scale, y - 19 * scale, 4 * scale, 4 * scale);</div>
+                <div class="code" style="font-size:10px;text-align:left">// right</div>
+                <div class="code" style="font-size:10px;text-align:left">height = 15 * this.rightSize;</div>
+                <div class="code" style="font-size:10px;text-align:left">context.fillRect(x + 14 * scale, y - (15 + height) * scale, 4 * scale, height * scale);</div>
+                <div class="code" style="font-size:10px;text-align:left">context.fillRect(x + 15 * scale, y - (15 + height + 1) * scale, 2 * scale, 1 * scale);</div>
+                <div class="code" style="font-size:10px;text-align:left">context.fillRect(x + 12 * scale, y - 19 * scale, 4 * scale, 4 * scale);</div>
+         </li>
+        </ul>
+      </section>
+      <section data-bespoke-backdrop="emphatic" class="emphatic-text">
+        <h2 class="bullet">Dinosaurus</h2>
+        <ul>
+            <li>Di buat dengan menggunakan gabungan pixel</li>
+            <li><p>(function(namespace) { <br>
+                    var STEP_SPEED = 0.02; <br>
+                    var JUMP_DISTANCE = 250;<br>
+                    var JUMP_HEIGHT = 100;<br>
+
+                    function Dinosaur(options) {<br>
+                        this.scale = options.scale;<br>
+                        this.x = options.left;<br>
+                        this.y = options.bottom;<br>
+                        this.colour = options.colour;<br>
+                        this.jumpStart = null;
+                    }
+                </p>
+            </li>
+        </ul>
+        
+      </section>
+      <section data-bespoke-backdrop="emphatic" class="emphatic-text">
+       <h2 class="bullet">Jump Height</h2>
+        <ul>
+          <li>Dinosaur.prototype.jumpHeight = function (offset) { <br>
+                    var distanceRemaining = this.jumpDistanceRemaining(offset);<br>
+                    if (distanceRemaining > 0) {<br>
+                        var maxPoint = JUMP_DISTANCE / 2;<br><br>
+
+                        if (distanceRemaining >= maxPoint) {<br>
+                            distanceRemaining -= JUMP_DISTANCE<br><br>
+                        }
+
+                        // get a number between 0 and 1 (-x^2)<br>
+                        // var arcPos = Math.abs(Math.pow(distanceRemaining / maxPoint, 2) * -1);<br><br>
+
+                        // linear<br>
+                        var arcPos = Math.abs(distanceRemaining / maxPoint);<br><br>
+
+                        return JUMP_HEIGHT * arcPos;<br>
+                    }
+                    return 0;<br>
+                };
+       </li>
+        </ul>
+      </section>
+      <section data-bespoke-backdrop="emphatic" class="emphatic-text">
+          <h2 class="bullet">Score!</h2>
+           <ul>
+               <li>Proses berjalannya Score ini adalah dengan seberapa banyak <br> jarak yang anda bisa capai dan akan berhenti jika terjadi collision (tabrakan)</li>
+               <li><p>(function(namespace) { <br>
+                            var SCORE_FACTOR = 0.1; <br>
+
+                            function formatOffset(offset) { <br>
+                                // TODO pad with zeroes <br>
+                                return Math.floor(offset * SCORE_FACTOR); <br>
+                            }
+
+                            function ScoreBoard(options) { <br>
+                                this.scale = options.scale; <br>
+                                this.x = options.left; <br>
+                                this.y = options.bottom; <br>
+                                this.colour = options.colour; <br>
+                            }
+              </p></li>
+           </ul>
+      </section>
+      <section data-bespoke-backdrop="emphatic" class="emphatic-text">
+         <h2 class="bullet">Score</h2>
+          <ul>
+              <li>ScoreBoard.prototype = Object.create(GameObject.prototype); <br>
+                    ScoreBoard.prototype.constructor = ScoreBoard;<br><br>
+
+                    ScoreBoard.prototype.draw = function(context, offset) {<br>
+                        context.fillStyle = this.colour;<br>
+                        context.font = "16px Courier";<br>
+                        context.textAlign = "right"; <br>
+                        context.fillText(formatOffset(offset), this.x, this.y);<br>
+                    };<br><br>
+
+                    namespace.ScoreBoard = ScoreBoard;<br>
+                })(window);<br>
+             </li>
+          </ul>
+      </section>
+      <section data-bespoke-backdrop="emphatic" class="emphatic-text">
+        <h1>Dinosaur!</h1>
         <canvas id="game"></canvas>		
         <p class="controls">press space bar to start</p>        
         <script src="js/helpers.js"></script>        
@@ -42,25 +161,6 @@
               location.reload();
           }
         </script>
-      </section>
-      <section>
-        <h2>Named Route  </h2>
-        <p>Look up! This route has been named with a <em>'data-bespoke-hash'</em> attribute.</p>
-      </section>
-      <section data-bespoke-backdrop="emphatic" class="emphatic-text">
-        <h2>Emphatic Slide!</h2>
-        <h3>Powered by <a href="https://github.com/markdalgleish/bespoke-backdrop">bespoke-backdrop</a></h3>
-      </section>
-      <section>
-        <h2 class="bullet">Just the beginning...</h2><br>
-        <ul>
-          <li>Edit <a href="http://jade-lang.com/">Jade</a> markup in <em>'src/index.jade'</em></li>
-          <li>Edit <a href="http://learnboost.github.io/stylus/">Stylus</a> styles in <em>'src/styles/main.styl'</em></li>
-          <li>Edit JavaScript in <em>'src/scripts/main.js'</em></li>
-        </ul><br>
-        <ul>
-          <li><strong>Enjoy! :)</strong><a href="http://twitter.com/markdalgleish"> -@markdalgleish</a></li>
-        </ul>
       </section>
     </article>
     <script src="build/build.js"></script>
