@@ -1,12 +1,12 @@
 (function(namespace) {
 	var DEFAULT_COLOUR = "#444";
 	var BACKGROUND_COLOUR = "#EEE";
-	var OFFSET_SPEED = 0.4;
+	var OFFSET_SPEED = 0.5;
 	var MAX_TIME_TICK = 1000 / 60;
 	var SCREEN_BUFFER = 50;
 	var GROUND_BUFFER = 10;
-	var SPACE_BAR_CODE = 80;
-	var MIN_CACTUS_DISTANCE = 400;
+	var SPACE_BAR_CODE = 32;
+	var MIN_CACTUS_DISTANCE = 500;
 
 	var spacePressed = false;
 	function keydown(e) {
@@ -71,11 +71,11 @@
 
 			while (count--) {
 				this.cacti.push(new Cactus({
-					left: x + (count * 20 * scale), 
+					left: x + (count * 20 * scale),
 					bottom: this.canvas.height - GROUND_BUFFER,
 					scale: scale, 
-					leftSize: rand(0.5, 1.5), 
-					rightSize: rand(0.5, 1.5), 
+					leftSize: rand(0.5, 1.5),
+					rightSize: rand(0.5, 1.5),
 					centerSize: rand(0.5, 1.5),
 					colour: DEFAULT_COLOUR
 				}));
